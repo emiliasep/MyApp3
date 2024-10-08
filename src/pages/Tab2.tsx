@@ -1,22 +1,25 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
+import { useState } from 'react';
 
 const Tab2: React.FC = () => {
+
+  const [searchText, setSearchText] = useState('Type text here');
+
+  const clickEventOnButton = () => {
+    console.log(searchText)
+  }
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Search</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+      <IonContent className="ion-padding">
+        <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} color="light"></IonSearchbar>
+        <IonButton color="secondary" shape="round" onClick={clickEventOnButton}>Search</IonButton>
       </IonContent>
     </IonPage>
   );
